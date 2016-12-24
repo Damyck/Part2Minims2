@@ -45,7 +45,7 @@ public class LogIn extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 EditText name = (EditText) findViewById(R.id.nom);
-                String name2 = name.toString();
+                final String name2 = name.toString();
                 client.get(BASE_URL + "/get/"+name2, null, new TextHttpResponseHandler() {
                     @Override
                     public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
@@ -55,6 +55,7 @@ public class LogIn extends AppCompatActivity {
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, String responseString) {
                         Intent intent1 = new Intent(LogIn.this, MainActivity.class);
+                        intent1.putExtra("Name",name2);
                         startActivity(intent1);
                     }
 
